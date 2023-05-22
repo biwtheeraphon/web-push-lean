@@ -11,8 +11,18 @@ function displayConfirmNotification(message) {
         icon: 'src/images/icon_payso.png',
         image: 'src/images/icon_payso.png',
     };
-    runtime.register()
-         .then(sw => sw.showNotification('Successfully subscribed!', options));
+    navigator.serviceWorker.getRegistration().then(
+      reg => {
+          reg.showNotification("Guarda il videoclip!", {
+              body: "Refno : 202305221452 , จำนวนเงิน 1000 บาท",
+              icon: 'src/images/icon_payso.png',
+              image: 'src/images/icon_payso.png',
+          });
+          self.addEventListener('notificationclick', function (event) {
+              event.notification.close();
+              clients.openWindow("https://youtu.be/PAvHeRGZ_lA");
+            });
+      })
   }
   
   function askForNotificationPermission() {
@@ -20,7 +30,6 @@ function displayConfirmNotification(message) {
       if (result !== "granted") {
         console.log("No notification permission granted!");
       } else {
-
         displayConfirmNotification("Check");
       }
     });
