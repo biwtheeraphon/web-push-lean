@@ -10,6 +10,7 @@ function displayConfirmNotification() {
         icon: 'src/images/icon_payso.png',
         image: 'src/images/icon_payso.png',
     };
+    alert("display", options);
     new Notification("ยืนยันการชำระเงิน", options);
   }
   
