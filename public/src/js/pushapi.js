@@ -11,9 +11,10 @@ function displayConfirmNotification(message) {
         icon: 'src/images/icon_payso.png',
         image: 'src/images/icon_payso.png',
     };
+
     navigator.serviceWorker.getRegistration().then(
-      reg => {
-          reg.showNotification("Guarda il videoclip!", {
+      async reg => {
+         await reg.showNotification("Guarda il videoclip!", {
               body: "Refno : 202305221452 , จำนวนเงิน 1000 บาท",
               icon: 'src/images/icon_payso.png',
               image: 'src/images/icon_payso.png',
