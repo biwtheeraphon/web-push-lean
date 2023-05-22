@@ -4,9 +4,9 @@ if (!window.Promise) {
   }
 
 
-function displayConfirmNotification() {
+function displayConfirmNotification(message) {
     let options = {
-        body: "Refno : 202305221452 , จำนวนเงิน 100 บาท",
+        body: "Refno : 202305221452 , จำนวนเงิน 100 บาท "+ message,
         icon: 'src/images/icon_payso.png',
         image: 'src/images/icon_payso.png',
     };
@@ -21,7 +21,7 @@ function displayConfirmNotification() {
         console.log("No notification permission granted!");
       } else {
         alert("Notification permission "+result);
-        displayConfirmNotification();
+        displayConfirmNotification("Check");
       }
     });
   }
