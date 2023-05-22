@@ -13,9 +13,6 @@
   <link rel="stylesheet" href="/src/css/app.css" />
   <link rel="manifest" href="/manifest.json" />
 </head>
-<style>
-  
-</style>
 
 <body>
   <div id="app">
@@ -23,40 +20,41 @@
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">PWA</span>
+          <img class="img-logo" src="src/images/icon_payso.png" alt="" srcset="">
+          <span class="mdl-layout-title">Pay Solutions</span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
           <nav class="mdl-navigation mdl-layout--large-screen-only">
             <div class="drawer-option">
-              <button
-                class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
-                Enable Notifications
-              </button>
+                <button style="display: none;"
+                    class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
+                    Enable Notifications
+                </button>
+                <button
+                    class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
+                    Log out
+                </button>
             </div>
-          </nav>
-        </div>
+        </nav>
       </header>
       <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">PWA</span>
+        <span class="mdl-layout-title">Pay Solutions</span>
         <nav class="mdl-navigation">
           <div class="drawer-option">
-            <button 
+              <button style="display: none;"
+                  class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
+                  Enable Notifications
+              </button>
+              <button
               class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
-              Enable Notifications
-            </button>
+              Log out
+          </button>
           </div>
-        </nav>
+      </nav>
       </div>
       <main class="mdl-layout__content mat-typography">
-        <div class="page-content">
-          <img </div>
-          <div id="confirmation-toast" aria-live="assertive" aria-atomic="true" aria-relevant="text"
-            class="mdl-snackbar mdl-js-snackbar">
-            <div class="mdl-snackbar__text"></div>
-            <button type="button" class="mdl-snackbar__action"></button>
-          </div>
-          Login
+        <!-- Login
           <form>
             <label>
               <span>Username : </span>
@@ -71,24 +69,67 @@
             <button type="submit" id="form-submit">
               sumit
             </button>
-          </form>
-          <div class="modal" id="modal-one">
+          </form> -->
+
+        <!-- <div class="modal" id="modal-one">
             <div class="modal-bg modal-exit"></div>
             <div class="modal-container">
               <button class="modal-close modal-exit">X</button>
               <h1>Login Fail</h1>
               <h2>Please login again.</h2>
             </div>
+          </div> -->
+
+        <div class="container" style="top: 330px;">
+          <div class="box"></div>
+          <div class="container-forms">
+            <div class="container-info">
+              <div class="info-item">
+                <div class="table">
+                  <div class="table-cell">
+                    <p>
+                      Have an account?
+                    </p>
+                    <div class="btn">
+                      Log in
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="table">
+                  <div class="table-cell">
+                    <p>
+                      welcome to ......
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container-form">
+              <div class="form-item log-in">
+                <div class="table">
+                  <div class="table-cell">
+                    <form>
+                      <input value="" type="text" id="username" placeholder="Username" />
+                      <input value="" type="password" id="password" placeholder="Password" />
+                      <button class="btn-submit mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent" type="submit" id="form-submit">
+                        Login
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
       </main>
     </div>
   </div>
   <script src="/src/js/material.min.js"></script>
   <script src="/src/js/app.js"></script>
   <script src="/src/js/pushapi.js"></script>
-  <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script> 
   <script type="text/javascript">
-    const result = document.getElementById("result");
     document.querySelector("form").addEventListener("submit", (e) => {
       e.preventDefault();
       const username = document.getElementById("username").value;
@@ -112,7 +153,7 @@
     });
     function checkLogin(data, username) {
       const obj = JSON.parse(data);
-      console.log("Login ==> " +obj.result)
+      console.log("Login ==> " + obj.result)
       if (obj.message != "fail" && obj.result != false) {
         var myHeaders = new Headers();
         myHeaders.append("apikey", "JpywR23@W8");
@@ -127,14 +168,16 @@
           .then(response => response.text())
           .then(result => checkMerchant(result)) //console.log(result)
           .catch(error => errorLogin());
-      }else{
+      } else {
         errorLogin()
       }
     }
     function checkMerchant(data) {
       const obj = JSON.parse(data);
-      console.log(obj)
-     
+      if(obj.merchantId != null && obj.merchantId > 0) {
+          window.localStorage.setItem('mid', obj.merchantId)
+          window.location.href = '/dashboard.html';
+      }
     }
 
     function errorLogin() {
@@ -144,19 +187,33 @@
     }
 
     document.addEventListener('click', function (event) {
-    if (!event.target.matches('.modal-exit')) return;
+      if (!event.target.matches('.modal-exit')) return;
       const modal = document.getElementById("modal-one");
       modal.classList.remove("open");
       modal.classList.remove("modal-show");
     }, false);
-        
+
+    // function checkUser() {
+    //     merchantid = window.localStorage.getItem('mid')
+    //     if (merchantid == null) {
+    //         window.location.href = '/index.html';
+    //     }else{
+    //         window.location.href = '/dashboard.html';
+    //     }
+    // }
+
+    // checkUser();
   </script>
+  
+  
+  <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+    integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+    crossorigin="anonymous"></script>
   <script>
-     var socket = io("https://conventions-bloggers-is-fred.trycloudflare.com");
-        socket.on('chat message', function(msg) {
-          console.log(msg)
-          displayConfirmNotification(msg)       
-      });
+    var socket = io("https://classification-upgrading-inter-encoding.trycloudflare.com");
+    socket.on('chat message', function (msg) {
+      displayConfirmNotification(msg)
+    });
   </script>
 </body>
 

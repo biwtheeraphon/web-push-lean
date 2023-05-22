@@ -13,15 +13,11 @@ function displayConfirmNotification(message) {
     };
 
     navigator.serviceWorker.getRegistration().then(
-      async reg => {
-         await reg.showNotification("Guarda il videoclip!", {
-              body: "Refno : 202305221452 , จำนวนเงิน 1000 บาท",
-              icon: 'src/images/icon_payso.png',
-              image: 'src/images/icon_payso.png',
-          });
+       reg => {
+        reg.showNotification(`ยืนยันการชำระเงินของ MID: ${message}`, options);
           self.addEventListener('notificationclick', function (event) {
               event.notification.close();
-              clients.openWindow("https://youtu.be/PAvHeRGZ_lA");
+              clients.openWindow("https://https://paysolutions.asia");
             });
       })
   }
@@ -45,3 +41,5 @@ function displayConfirmNotification(message) {
       );
     }
   }
+
+  
