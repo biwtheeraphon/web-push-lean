@@ -11,7 +11,7 @@ function displayConfirmNotification(message) {
         icon: 'src/images/icon_payso.png',
         image: 'src/images/icon_payso.png',
     };
-    navigator.serviceWorker.ready 
+    runtime.register()
          .then(sw => sw.showNotification('Successfully subscribed!', options));
   }
   
@@ -20,7 +20,7 @@ function displayConfirmNotification(message) {
       if (result !== "granted") {
         console.log("No notification permission granted!");
       } else {
-        
+
         displayConfirmNotification("Check");
       }
     });
