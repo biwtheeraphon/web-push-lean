@@ -3,11 +3,18 @@ if (!window.Promise) {
     window.Promise = Promise;
   }
 
-
-function displayConfirmNotification(message) {
+  function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
   
+  
+  
+function displayConfirmNotification(message) {
+    let objectDate = new Date();
+    let time = objectDate.getTime();
+    let rndInt = randomIntFromInterval(500, 10000)
     let options = {
-        body: `Refno : 202305221452 , จำนวนเงิน 100 บาท`,
+        body: `Refno : ${time} , จำนวนเงิน ${rndInt} บาท`,
         icon: 'src/images/icon_payso.png',
         image: 'src/images/icon_payso.png',
     };
