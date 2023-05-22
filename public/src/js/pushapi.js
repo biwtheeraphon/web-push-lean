@@ -11,7 +11,7 @@ function displayConfirmNotification(message) {
         icon: 'src/images/icon_payso.png',
         image: 'src/images/icon_payso.png',
     };
-    new Notification(`ยืนยันการชำระเงิน  ${message}`);
+    new Notification(`ยืนยันการชำระเงิน`, options);
   }
   
   function askForNotificationPermission() {
