@@ -3,7 +3,7 @@
   "short_name": "PaySo",
   "icons": [
     {
-      "src": "/src/images/icons/icon_payso.png",
+      "src": "/src/images/icon_payso.png",
       "type": "image/png",
       "sizes": "512x512"
     }

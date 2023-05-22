@@ -5,12 +5,13 @@ if (!window.Promise) {
 
 
 function displayConfirmNotification(message) {
+  console.log("app", message);
     let options = {
-        body: "Refno : 202305221452 , จำนวนเงิน 100 บาท "+ message,
+        body: `Refno : 202305221452 , จำนวนเงิน 100 บาท`,
         icon: 'src/images/icon_payso.png',
         image: 'src/images/icon_payso.png',
     };
-    new Notification("ยืนยันการชำระเงิน " + options);
+    new Notification(`ยืนยันการชำระเงิน  ${message}`);
   }
   
   function askForNotificationPermission() {

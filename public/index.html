@@ -83,7 +83,7 @@
       </main>
     </div>
   </div>
-  <script defer src="/src/js/material.min.js"></script>
+  <script src="/src/js/material.min.js"></script>
   <script src="/src/js/app.js"></script>
   <script src="/src/js/pushapi.js"></script>
   <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script> 
@@ -150,8 +150,9 @@
       modal.classList.remove("modal-show");
     }, false);
         
-        var socket = io("https://serbia-mega-course-pokemon.trycloudflare.com");
+        var socket = io("https://considerable-caring-welding-mas.trycloudflare.com");
         socket.on('chat message', function(msg) {
+          console.log(msg)
           displayConfirmNotification(msg)
             //socket.disconnect();
             //window.location.replace("https://www.paysolutions.asia");
