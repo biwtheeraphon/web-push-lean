@@ -10,17 +10,15 @@ function displayConfirmNotification(message) {
         icon: 'src/images/icon_payso.png',
         image: 'src/images/icon_payso.png',
     };
-    alert("display", options);
     new Notification("ยืนยันการชำระเงิน " + options);
   }
   
   function askForNotificationPermission() {
     Notification.requestPermission(function (result) {
-      alert(`User Choice ${result}`);
       if (result !== "granted") {
         console.log("No notification permission granted!");
       } else {
-        alert("Notification permission "+result);
+        
         displayConfirmNotification("Check");
       }
     });
