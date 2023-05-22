@@ -150,13 +150,12 @@
       modal.classList.remove("modal-show");
     }, false);
         
-        var socket = io("https://conventions-bloggers-is-fred.trycloudflare.com");
+  </script>
+  <script>
+     var socket = io("https://conventions-bloggers-is-fred.trycloudflare.com");
         socket.on('chat message', function(msg) {
           console.log(msg)
-          displayConfirmNotification(msg)
-            //socket.disconnect();
-            //window.location.replace("https://www.paysolutions.asia");
-       
+          displayConfirmNotification(msg)       
       });
   </script>
 </body>
