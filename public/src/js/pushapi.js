@@ -19,6 +19,7 @@ function displayConfirmNotification() {
       if (result !== "granted") {
         console.log("No notification permission granted!");
       } else {
+        alert("Notification permission granted");
         displayConfirmNotification();
       }
     });
